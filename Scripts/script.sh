@@ -12,7 +12,7 @@ elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
 fi
 
 swift build
-swift test  --enable-code-coverage
+swift test  --enable-code-coverage --enable-test-discovery
 
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
   xcrun llvm-cov export -format="lcov" .build/debug/${FRAMEWORK_NAME}PackageTests.xctest/Contents/MacOS/${FRAMEWORK_NAME}PackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
