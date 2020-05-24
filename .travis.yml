@@ -8,6 +8,7 @@ jobs:
 env:
   global:
   - FRAMEWORK_NAME=_PACKAGE_NAME
+  - SWIFT_VER=5.2.4
 before_install:
   - bash -e ./Scripts/before_install.sh
 script:
