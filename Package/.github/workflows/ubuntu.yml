@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     env:
-      PACKAGE_NAME: EggSeed
+      PACKAGE_NAME: _PACKAGE_NAME
       SWIFT_VER: 5.2.4
 
     runs-on: ubuntu-18.04

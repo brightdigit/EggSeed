@@ -14,6 +14,10 @@ sed -i '' "s/_PACKAGE_NAME/$PACKAGE_NAME/g" .github/workflows/macOS.yml
 sed -i '' "s/_PACKAGE_NAME/$PACKAGE_NAME/g" .github/workflows/ubuntu.yml
 #   in the Travis CI Setup
 sed -i '' "s/_PACKAGE_NAME/$PACKAGE_NAME/g" .travis.yml
+#   in the Travis CI Setup
+sed -i '' "s/_PACKAGE_NAME/$PACKAGE_NAME/g" bitrise.yml
+#   in the Travis CI Setup
+sed -i '' "s/_PACKAGE_NAME/$PACKAGE_NAME/g" .circleci/config.yml
 #   in the README.md
 sed -i '' "s/_PACKAGE_NAME/$PACKAGE_NAME/g" README.md
 #   in the License

@@ -5,7 +5,7 @@ version: 2.1
 parameters:
   package-name:
     type: string
-    default: "EggSeed"
+    default: "_PACKAGE_NAME"
   swift-ver:
     type: string
     default: "5.2.4"

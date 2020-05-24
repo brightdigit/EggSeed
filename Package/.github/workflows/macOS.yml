@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     env:
-      PACKAGE_NAME: EggSeed
+      PACKAGE_NAME: _PACKAGE_NAME
       XCODE_PATH: /Applications/Xcode_11.5.app
 
     runs-on: macos-latest
