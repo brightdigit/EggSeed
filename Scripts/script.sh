@@ -21,6 +21,8 @@ else
   bash <(curl https://codecov.io/bash) -F travis -F $RELEASE_NAME -n $TRAVIS_JOB_NUMBER-$TRAVIS_OS_NAME
 fi
 
+curl -s https://raw.githubusercontent.com/daveverwer/SwiftPMLibrary/master/script.sh | bash -s -- mine
+
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
   swift package dump-package | jq -e ".products | length > 0"
   pod lib lint
