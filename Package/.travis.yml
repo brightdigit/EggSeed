@@ -1,0 +1,15 @@
+jobs:
+  include:
+    - os: linux
+      dist: bionic
+      sudo: required
+    - os: osx
+      osx_image: xcode11.4
+env:
+  global:
+  - FRAMEWORK_NAME=_PACKAGE_NAME
+  - SWIFT_VER=5.2.4
+before_install:
+  - bash -e ./Scripts/before_install.sh
+script:
+  - bash -e ./Scripts/script.sh
