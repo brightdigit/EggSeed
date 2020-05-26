@@ -49,7 +49,7 @@ let package = Package(
     "komondor": [
       "pre-push": "swift test",
       "pre-commit": [
-        "swift test  --enable-code-coverage --enable-test-discovery",
+        "swift test  --enable-code-coverage --enable-test-discovery --generate-linuxmain",
         "swift run swiftformat .",
         "swift run swiftlint autocorrect",
         "swift run sourcedocs generate --spm-module eggseed",

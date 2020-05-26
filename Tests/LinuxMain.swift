@@ -3,5 +3,6 @@ import XCTest
 import EggSeedTests
 
 var tests = [XCTestCaseEntry]()
-tests += EggSeedTests.allTests()
+tests += EggSeedTests.__allTests()
+
 XCTMain(tests)
