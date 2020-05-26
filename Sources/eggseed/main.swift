@@ -2,6 +2,10 @@ import Foundation
 import ShellOut
 import ZIPFoundation
 
+#if canImport(FoundationNetworking)
+  import FoundationNetworking
+#endif
+
 let filesFilter = [".github/workflows/macOS.yml",
                    ".github/workflows/ubuntu.yml",
                    ".travis.yml",
