@@ -13,7 +13,8 @@ let package = Package(
     .executable(
       name: "eggseed",
       targets: ["eggseed"]
-    )
+    ),
+    .library(name: "EggSeedKit", targets: ["EggSeedKit"])
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
@@ -31,6 +32,13 @@ let package = Package(
     // Targets can depend on other targets in this package, and on products in packages which this package depends on.
     .target(
       name: "eggseed",
+      dependencies: [
+        .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        "ShellOut", "ZIPFoundation", "PromiseKit", "EggSeedKit"
+      ]
+    ),
+    .target(
+      name: "EggSeedKit",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
         "ShellOut", "ZIPFoundation", "PromiseKit"
