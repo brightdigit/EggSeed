@@ -14,8 +14,8 @@
         "package": "Komondor",
         "repositoryURL": "https://github.com/brightdigit/Komondor",
         "state": {
-          "branch": "feature/platforms-2019-support-4.2",
-          "revision": "ce035c442cfabd0b2f84c7687eaa388620ea20db",
+          "branch": "feature/platforms-2019",
+          "revision": "21fdda495cab903067b6e7ab90e32365f21aa759",
           "version": null
         }
       },
@@ -50,8 +50,8 @@
         "package": "PackageConfig",
         "repositoryURL": "https://github.com/brightdigit/PackageConfig.git",
         "state": {
-          "branch": "feature/platforms-2019-support-4.2",
-          "revision": "bbd889e0ebc2acb2788eb22e21eb0807562d8ae4",
+          "branch": "feature/platforms-2019",
+          "revision": "f1210524a95758996489e918ae38c395c0cc3cfe",
           "version": null
         }
       },
@@ -101,6 +101,15 @@
         }
       },
       {
+        "package": "ShellOut",
+        "repositoryURL": "https://github.com/JohnSundell/ShellOut",
+        "state": {
+          "branch": null,
+          "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
+          "version": "2.3.0"
+        }
+      },
+      {
         "package": "SourceDocs",
         "repositoryURL": "https://github.com/eneko/SourceDocs",
         "state": {
@@ -116,6 +125,15 @@
           "branch": null,
           "revision": "77a4dbbb477a8110eb8765e3c44c70fb4929098f",
           "version": "0.29.0"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "223d62adc52d51669ae2ee19bdb8b7d9fd6fcd9c",
+          "version": "0.0.6"
         }
       },
       {
@@ -188,6 +206,15 @@
           "branch": null,
           "revision": "3ffd9672edf3799077373add813ba1e10b369950",
           "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams.git",
+        "state": {
+          "branch": null,
+          "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
+          "version": "2.0.0"
         }
       },
       {

@@ -22,7 +22,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
     .package(url: "https://github.com/JohnSundell/ShellOut", from: "2.0.0"),
     .package(url: "https://github.com/weichsel/ZIPFoundation", .upToNextMajor(from: "0.9.0")),
-    .package(url: "https://github.com/brightdigit/Komondor", .branch("feature/platforms-2019-support-4.2")),
+    .package(url: "https://github.com/brightdigit/Komondor", .branch("feature/platforms-2019")),
     .package(url: "https://github.com/eneko/SourceDocs", from: "1.0.0"),
     .package(url: "https://github.com/SwiftPackageIndex/PackageListValidator", .branch("release/0.0.1")),
     .package(url: "https://github.com/mxcl/PromiseKit.git", from: "7.0.0-alpha.3")
