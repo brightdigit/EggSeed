@@ -1,4 +1,4 @@
-@testable import eggseed
+// @testable import eggseed
 import XCTest
 
 final class EggSeedTests: XCTestCase {
