@@ -4,6 +4,6 @@ import Foundation
   import FoundationNetworking
 #endif
 
-protocol Cancellable {}
+public protocol Cancellable {}
 
 extension URLSessionDownloadTask: Cancellable {}

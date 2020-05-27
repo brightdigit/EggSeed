@@ -5,6 +5,7 @@ import Foundation
 #endif
 
 public class Runner: EggSeedRunner {
+  let session: Session = URLSession.shared
   let downloader: TemplateDownloader = URLTemplateDownloader()
   let gitterface: Gitterface = ProcessGitterface()
   let extractor: TemplateExtractor = ArchiveExtractor()
@@ -44,7 +45,7 @@ public class Runner: EggSeedRunner {
         completion(.missingValue("userName"))
         return
       }
-      self.downloader.downloadURL(url) { download in
+      self.downloader.downloadURL(url, with: self.session) { download in
         let url: URL
         do {
           url = try download.get()

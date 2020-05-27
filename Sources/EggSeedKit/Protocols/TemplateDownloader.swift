@@ -6,5 +6,5 @@ import Foundation
 
 protocol TemplateDownloader {
   @discardableResult
-  func downloadURL(_ url: URL, _ completition: @escaping ((Result<URL, Error>) -> Void)) -> Cancellable
+  func downloadURL(_ url: URL, with session: Session, _ completition: @escaping ((Result<URL, Error>) -> Void)) -> Cancellable
 }
