@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     env:
-      PACKAGE_NAME: EggSeed
+      PACKAGE_NAME: _PACKAGE_NAME
       XCODE_PATH: /Applications/Xcode_11.5.app
 
     runs-on: macos-latest
@@ -32,9 +32,15 @@ jobs:
       env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Build Documentation
-      run: sourcedocs generate --spm-module eggseed
+      run: sourcedocs generate --spm-module ${{ env.PACKAGE_NAME }}
     - name: Verify Valid Swift Package
-      run: curl -s https://raw.githubusercontent.com/daveverwer/SwiftPMLibrary/master/script.sh | bash -s -- mine
+      run: swift package dump-package | jq -e ".products | length > 0"
+    - name: CocoaPods Action
+      run: pod lib lint
+    - name: Upload to CodeCov.io
+      run: bash <(curl https://codecov.io/bash) -F github -F macos -F ${{ env.XCODE_NAME }} -n ${{ github.sha }}
+      env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
