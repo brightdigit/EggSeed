@@ -9,7 +9,7 @@ public class EggSeedRunner: Runner {
   let session: Session = URLSession.shared
   let downloader: Downloader = URLDownloader()
   let gitterface: Gitterface = ProcessGitterface()
-  let extractor: Expander = ArchiveExpander()
+  let expander: Expander = ArchiveExpander()
   let packageFactory: PackageFactory = ProcessPackageFactory()
 
   public init() {}
@@ -57,7 +57,7 @@ public class EggSeedRunner: Runner {
     let cancellable = when(fulfilled: userNamePromise, downloadPromise).then(on: queue) { (args) -> Promise<Void> in
       let (userName, url) = args
       return Promise<Void> { resolver in
-        self.extractor.extract(fromURL: url, toURL: destinationFolderURL, forEach: { item, completed in
+        self.expander.extract(fromURL: url, toURL: destinationFolderURL, forEach: { item, completed in
           if filesFilter.contains(item.relativePath), var text = String(data: item.data, encoding: .utf8) {
             text = text.replacingOccurrences(of: "_PACKAGE_NAME", with: packageName)
             text = text.replacingOccurrences(of: "_USER_NAME", with: userName)

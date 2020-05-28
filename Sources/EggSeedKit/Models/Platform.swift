@@ -4,4 +4,5 @@ enum Platform: Int, CaseIterable {
   case watchOS = 4
   case tvOS = 8
   case linux = 16
+  #warning("allow for multiple versions (ubuntus, amazon, centos)")
 }

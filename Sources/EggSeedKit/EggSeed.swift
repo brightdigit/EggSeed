@@ -32,7 +32,6 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   #warning("Add Linting Options")
 
   #warning("Allow Multiple Products")
-  // named options & executable or library
   @Option(default: .library) public var packageType: SwiftPackageType
   @Option() public var userName: String?
   @Option() public var path: String?
@@ -45,11 +44,9 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public func run() throws {
     let semaphore = DispatchSemaphore(value: 0)
     var error: Error?
-    DispatchQueue.global().async {
-      Self.runner.run(withConfiguration: self) {
-        error = $0
-        semaphore.signal()
-      }
+    Self.runner.run(withConfiguration: self) {
+      error = $0
+      semaphore.signal()
     }
     semaphore.wait()
     Self.exit(withError: error)
