@@ -1,19 +1,15 @@
 import Foundation
-import ShellOut
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
 
-import ShellOut
 struct ProcessSwiftPackageFactory: SwiftPackageFactory {
-  func create(atURL url: URL, withType _: SwiftPackageType, _ completition: @escaping (Error?) -> Void) {
-    do {
-      try shellOut(to: .createSwiftPackage(withType: .library), at: url.path)
-    } catch {
-      completition(error)
-      return
+  let launcher: Launcher = ProcessLauncher()
+
+  func create(atURL _: URL, withType type: SwiftPackageType, _ completition: @escaping (Error?) -> Void) {
+    launcher.bash("swift package init --type \(type.rawValue)", at: nil) {
+      completition($0.error)
     }
-    completition(nil)
   }
 }

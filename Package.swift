@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
   name: "EggSeed",
   platforms: [
-    .macOS(.v10_12)
+    .macOS(.v10_13)
   ],
   products: [
     // Products define the executables and libraries produced by a package, and make them visible to other packages.
@@ -20,7 +20,6 @@ let package = Package(
     // Dependencies declare other packages that this package depends on.
     // .package(url: /* package url */, from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
-    .package(url: "https://github.com/JohnSundell/ShellOut", from: "2.0.0"),
     .package(url: "https://github.com/weichsel/ZIPFoundation", .upToNextMajor(from: "0.9.0")),
     .package(url: "https://github.com/brightdigit/Komondor", .branch("feature/platforms-2019")),
     .package(url: "https://github.com/eneko/SourceDocs", from: "1.0.0"),
@@ -33,15 +32,14 @@ let package = Package(
     .target(
       name: "eggseed",
       dependencies: [
-        .product(name: "ArgumentParser", package: "swift-argument-parser"),
-        "ShellOut", "ZIPFoundation", "PromiseKit", "EggSeedKit"
+        "EggSeedKit"
       ]
     ),
     .target(
       name: "EggSeedKit",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
-        "ShellOut", "ZIPFoundation", "PromiseKit"
+        "ZIPFoundation", "PromiseKit"
       ]
     ),
     .testTarget(
@@ -63,7 +61,9 @@ let package = Package(
         "swift run swiftlint autocorrect",
         "swift run sourcedocs generate --spm-module eggseed",
         "swift run swiftpmls mine",
-        "git add ."
+        "git add .",
+        "swift run swiftformat --lint .",
+        "swift run swiftlint"
       ]
     ]
   ]).write()

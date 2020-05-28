@@ -5,5 +5,5 @@ import Foundation
 #endif
 
 protocol Gitterface {
-  func getRemoteURL(for name: String, at url: URL, _ completion: (Result<URL, Error>) -> Void)
+  func getRemoteURL(for name: String, at url: URL, _ completion: @escaping (Result<URL, Error>) -> Void)
 }

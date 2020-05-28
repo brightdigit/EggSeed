@@ -1,21 +1,25 @@
 import Foundation
-import ShellOut
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
 
 struct ProcessGitterface: Gitterface {
-  func getRemoteURL(for _: String, at url: URL, _ completion: (Result<URL, Error>) -> Void) {
-    let result = Result {
-      try shellOut(to: "git remote get-url origin", at: url.path)
-    }.flatMap { (remoteURLString) -> Result<URL, Error> in
-      if let url = URL(string: remoteURLString) {
-        return .success(url)
-      } else {
-        return .failure(EggSeedError.empty)
-      }
+  let launcher: Launcher = ProcessLauncher()
+  func getRemoteURL(for _: String, at url: URL, _ completion: @escaping (Result<URL, Error>) -> Void) {
+    launcher.bash("git remote get-url origin", at: url) { remoteURLString in
+      let result = remoteURLString.map {
+        String(bytes: $0, encoding: .utf8)
+      }.map {
+        $0.flatMap(URL.init)
+      }.mapError { $0 as Error }
+        .flatMap { (parsedURL) -> Result<URL, Error> in
+          guard let url = parsedURL else {
+            return .failure(EggSeedError.empty)
+          }
+          return .success(url)
+        }
+      completion(result)
     }
-    completion(result)
   }
 }

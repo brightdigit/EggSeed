@@ -13,7 +13,10 @@ public class Runner: EggSeedRunner {
 
   public init() {}
 
-  public func run(withConfiguration configuration: EggSeedConfiguration, _ completion: @escaping (EggSeedError?) -> Void) {
+  public func run(
+    withConfiguration configuration: EggSeedConfiguration,
+    _ completion: @escaping (EggSeedError?) -> Void
+  ) {
     let url = URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
     let filesFilter = [".github/workflows/macOS.yml",
                        ".github/workflows/ubuntu.yml",
@@ -26,7 +29,6 @@ public class Runner: EggSeedRunner {
     let destinationFolderURL = URL(fileURLWithPath: configuration.path ?? FileManager.default.currentDirectoryPath)
 
     let packageName = destinationFolderURL.lastPathComponent
-    let userNameCallback: (@escaping (Result<String, Error>) -> Void) -> Void
 
     gitterface.getRemoteURL(for: "origin", at: destinationFolderURL) { result in
       let userNameResult: Result<String, Error>

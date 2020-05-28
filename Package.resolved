@@ -102,7 +102,7 @@
       },
       {
         "package": "ShellOut",
-        "repositoryURL": "https://github.com/JohnSundell/ShellOut",
+        "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
           "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
@@ -206,15 +206,6 @@
           "branch": null,
           "revision": "3ffd9672edf3799077373add813ba1e10b369950",
           "version": "1.0.0"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams.git",
-        "state": {
-          "branch": null,
-          "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
-          "version": "2.0.0"
         }
       },
       {
