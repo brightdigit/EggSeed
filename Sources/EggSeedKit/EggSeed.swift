@@ -2,36 +2,42 @@ import ArgumentParser
 import Foundation
 
 public struct EggSeed: ParsableCommand, EggSeedConfiguration {
-  static var runner: EggSeedRunner!
+  static var runner: Runner!
 
-  static func setupRunner(_ runner: EggSeedRunner) {
+  static func setupRunner(_ runner: Runner) {
     Self.runner = runner
   }
 
   public init() {}
 
   // Licence
+  #warning("Add licence options")
 
   // OS
+  #warning("Add OS targets")
 
   // CI
+  #warning("Add CI targets")
 
   // Template
+  #warning("Add Template URLS")
 
   // cocoapods support
-
-  // oses
+  #warning("Add Cocoapods Support Flag")
 
   // sourcedocs or jazzy
+  #warning("Add Documentation Tool Option")
 
   // swiftformat or/and swiftlint danger etc...
+  #warning("Add Linting Options")
 
+  #warning("Allow Multiple Products")
   // named options & executable or library
   @Option(default: .library) public var packageType: SwiftPackageType
   @Option() public var userName: String?
   @Option() public var path: String?
 
-  public static func main(by runner: EggSeedRunner, _ arguments: [String]? = nil) -> Never {
+  public static func main(by runner: Runner, _ arguments: [String]? = nil) -> Never {
     Self.setupRunner(runner)
     return Self.main(arguments)
   }

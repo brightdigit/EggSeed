@@ -4,7 +4,7 @@ import Foundation
   import FoundationNetworking
 #endif
 
-struct URLTemplateDownloader: TemplateDownloader {
+struct URLDownloader: Downloader {
   func downloadURL(
     _ url: URL,
     with session: Session,

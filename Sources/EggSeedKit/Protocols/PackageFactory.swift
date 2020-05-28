@@ -4,6 +4,6 @@ import Foundation
   import FoundationNetworking
 #endif
 
-protocol SwiftPackageFactory {
+protocol PackageFactory {
   func create(atURL url: URL, withType type: SwiftPackageType, _ completition: @escaping (Error?) -> Void)
 }

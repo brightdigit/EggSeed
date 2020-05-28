@@ -1,3 +1,3 @@
 import EggSeedKit
 
-EggSeed.main(by: Runner())
+EggSeed.main(by: EggSeedRunner())

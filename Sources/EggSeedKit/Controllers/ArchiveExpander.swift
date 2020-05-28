@@ -5,11 +5,11 @@ import ZIPFoundation
   import FoundationNetworking
 #endif
 
-struct ArchiveExtractor: TemplateExtractor {
+struct ArchiveExpander: Expander {
   func extract(
     fromURL sourceURL: URL,
     toURL destinationURL: URL,
-    forEach: (TemplateExtractorItem, (Result<Bool, Error>) -> Void) -> Void,
+    forEach: (ExpansionEntry, (Result<Bool, Error>) -> Void) -> Void,
     completition: @escaping (Error?) -> Void
   ) {
     guard let archive = Archive(url: sourceURL, accessMode: .read) else {
@@ -19,9 +19,9 @@ struct ArchiveExtractor: TemplateExtractor {
     let items = archive.enumerated()
     for entryItem in items {
       do {
-        try archive.extract(entryItem.element) { data in
+        _ = try archive.extract(entryItem.element) { data in
           let path = entryItem.element.path.components(separatedBy: "/").dropFirst().joined(separator: "/")
-          let item = ArchiveItem(data: data, relativePath: path)
+          let item = ArchiveEntry(data: data, relativePath: path)
           let destinationFileURL = destinationURL.appendingPathComponent(path)
           if entryItem.element.type == Entry.EntryType.file {
             try? FileManager.default.createDirectory(

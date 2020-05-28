@@ -3,6 +3,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+
 public enum EggSeedError: Error {
   case missingValue(String)
   case downloadFailure(Error?)

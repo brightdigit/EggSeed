@@ -4,11 +4,11 @@ import Foundation
   import FoundationNetworking
 #endif
 
-protocol TemplateExtractor {
+protocol Expander {
   func extract(
     fromURL url: URL,
     toURL url: URL,
-    forEach: (TemplateExtractorItem, (Result<Bool, Error>) -> Void) -> Void,
+    forEach: (ExpansionEntry, (Result<Bool, Error>) -> Void) -> Void,
     completition: @escaping (Error?) -> Void
   )
 }

@@ -1,22 +1,23 @@
 import Foundation
+import PromiseKit
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
 
-public class Runner: EggSeedRunner {
+public class EggSeedRunner: Runner {
   let session: Session = URLSession.shared
-  let downloader: TemplateDownloader = URLTemplateDownloader()
+  let downloader: Downloader = URLDownloader()
   let gitterface: Gitterface = ProcessGitterface()
-  let extractor: TemplateExtractor = ArchiveExtractor()
-  let packageFactory: SwiftPackageFactory = ProcessSwiftPackageFactory()
+  let extractor: Expander = ArchiveExpander()
+  let packageFactory: PackageFactory = ProcessPackageFactory()
 
   public init() {}
 
   public func run(
     withConfiguration configuration: EggSeedConfiguration,
     _ completion: @escaping (EggSeedError?) -> Void
-  ) {
+  ) -> Cancellable {
     let url = URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
     let filesFilter = [".github/workflows/macOS.yml",
                        ".github/workflows/ubuntu.yml",
@@ -30,31 +31,32 @@ public class Runner: EggSeedRunner {
 
     let packageName = destinationFolderURL.lastPathComponent
 
-    gitterface.getRemoteURL(for: "origin", at: destinationFolderURL) { result in
-      let userNameResult: Result<String, Error>
+    let userNamePromise = Promise<String> { resolver in
       if let readUserName = configuration.userName {
-        userNameResult = .success(readUserName)
+        resolver.fulfill(readUserName)
       } else {
-        userNameResult = result.map {
-          $0.deletingLastPathComponent().lastPathComponent
+        gitterface.getRemoteURL(for: "origin", at: destinationFolderURL) { result in
+          resolver.resolve(result.map {
+            $0.deletingLastPathComponent().lastPathComponent
+          }.mapError { _ in
+            EggSeedError.missingValue("userName")
+            })
         }
       }
+    }
 
-      let userName: String
-      do {
-        userName = try userNameResult.get()
-      } catch {
-        completion(.missingValue("userName"))
-        return
+    let downloadPromise = Promise<URL> { resolver in
+      self.downloader.downloadURL(url, with: self.session) { result in
+        resolver.resolve(result.mapError { error in
+          EggSeedError.downloadFailure(error)
+        })
       }
-      self.downloader.downloadURL(url, with: self.session) { download in
-        let url: URL
-        do {
-          url = try download.get()
-        } catch {
-          completion(.downloadFailure(error))
-          return
-        }
+    }
+
+    let queue = DispatchQueue.global(qos: .userInitiated)
+    let cancellable = when(fulfilled: userNamePromise, downloadPromise).then(on: queue) { (args) -> Promise<Void> in
+      let (userName, url) = args
+      return Promise<Void> { resolver in
         self.extractor.extract(fromURL: url, toURL: destinationFolderURL, forEach: { item, completed in
           if filesFilter.contains(item.relativePath), var text = String(data: item.data, encoding: .utf8) {
             text = text.replacingOccurrences(of: "_PACKAGE_NAME", with: packageName)
@@ -68,20 +70,21 @@ public class Runner: EggSeedRunner {
           } else {
             completed(.success(false))
           }
-        }, completition: { error in
-          if let error = error {
-            completion(.extractionFailure(error))
-            return
-          }
-          self.packageFactory.create(atURL: destinationFolderURL, withType: configuration.packageType) { error in
-            completion(
-              error.map(
-                EggSeedError.packageFailure
-              )
-            )
-          }
-            })
+      }, completition: resolver.resolve)
       }
+    }.then(on: queue) { _ in
+      Promise { resolver in
+        self.packageFactory.create(atURL: destinationFolderURL, withType: configuration.packageType, resolver.resolve)
+      }
+    }.map(on: queue) { (_) -> EggSeedError? in
+      nil
     }
+    .recover(only: EggSeedError.self, on: queue) { error -> Promise<EggSeedError?> in
+      Promise { resolver in
+        resolver.fulfill(error)
+      }
+    }.done(on: queue, completion)
+
+    return cancellable
   }
 }

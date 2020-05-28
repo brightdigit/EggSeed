@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ArchiveItem: TemplateExtractorItem {
+public struct ArchiveEntry: ExpansionEntry {
   public let data: Data
   public let relativePath: String
 }

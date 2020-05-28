@@ -1,4 +1,5 @@
 import Foundation
+import PromiseKit
 
 #if canImport(FoundationNetworking)
   import FoundationNetworking
@@ -7,3 +8,5 @@ import Foundation
 public protocol Cancellable {}
 
 extension URLSessionDownloadTask: Cancellable {}
+
+extension Promise: Cancellable {}
