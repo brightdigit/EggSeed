@@ -12,11 +12,11 @@
       },
       {
         "package": "Komondor",
-        "repositoryURL": "https://github.com/brightdigit/Komondor",
+        "repositoryURL": "https://github.com/shibapm/Komondor",
         "state": {
-          "branch": "feature/platforms-2019",
-          "revision": "21fdda495cab903067b6e7ab90e32365f21aa759",
-          "version": null
+          "branch": null,
+          "revision": "cdcd673e781040292b059f1aa4c50ba595a2d2e0",
+          "version": "1.0.5"
         }
       },
       {
@@ -48,11 +48,11 @@
       },
       {
         "package": "PackageConfig",
-        "repositoryURL": "https://github.com/brightdigit/PackageConfig.git",
+        "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
         "state": {
-          "branch": "feature/platforms-2019",
-          "revision": "f1210524a95758996489e918ae38c395c0cc3cfe",
-          "version": null
+          "branch": null,
+          "revision": "bf90dc69fa0792894b08a0b74cf34029694ae486",
+          "version": "0.13.0"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/eneko/SourceDocs",
         "state": {
           "branch": null,
-          "revision": "0f46a3096d1d38d6e297f58e21468f176a06e300",
-          "version": "1.0.0"
+          "revision": "354e3e6310b4bab616aa9c9ec0798644f874e4d2",
+          "version": "1.1.0"
         }
       },
       {
@@ -125,15 +125,6 @@
           "branch": null,
           "revision": "77a4dbbb477a8110eb8765e3c44c70fb4929098f",
           "version": "0.29.0"
-        }
-      },
-      {
-        "package": "swift-argument-parser",
-        "repositoryURL": "https://github.com/apple/swift-argument-parser",
-        "state": {
-          "branch": null,
-          "revision": "223d62adc52d51669ae2ee19bdb8b7d9fd6fcd9c",
-          "version": "0.0.6"
         }
       },
       {
@@ -159,8 +150,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat.git",
         "state": {
           "branch": null,
-          "revision": "0e9ec71a8b25ed5b80a9a22db2e93d41b31ab166",
-          "version": "0.44.11"
+          "revision": "51a784467a51699d688b0662ae5ed76af2795e5f",
+          "version": "0.44.12"
         }
       },
       {
