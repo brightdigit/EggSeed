@@ -5,5 +5,5 @@ import Foundation
 #endif
 
 protocol PackageFactory {
-  func create(atURL url: URL, withType type: SwiftPackageType, _ completition: @escaping (Error?) -> Void)
+  func create(atURL url: URL, withType type: SwiftPackageType, _ completion: @escaping (Error?) -> Void)
 }

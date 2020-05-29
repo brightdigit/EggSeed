@@ -10,10 +10,10 @@ struct ArchiveExpander: Expander {
     fromURL sourceURL: URL,
     toURL destinationURL: URL,
     forEach: (ExpansionEntry, (Result<Bool, Error>) -> Void) -> Void,
-    completition: @escaping (Error?) -> Void
+    completion: @escaping (Error?) -> Void
   ) {
     guard let archive = Archive(url: sourceURL, accessMode: .read) else {
-      completition(EggSeedError.invalidData(sourceURL))
+      completion(EggSeedError.invalidData(sourceURL))
       return
     }
     let items = archive.enumerated()
@@ -34,7 +34,7 @@ struct ArchiveExpander: Expander {
                 do {
                   try data.write(to: destinationFileURL)
                 } catch {
-                  completition(error)
+                  completion(error)
                   return
                 }
               }
@@ -42,10 +42,10 @@ struct ArchiveExpander: Expander {
           }
         }
       } catch {
-        completition(error)
+        completion(error)
         return
       }
     }
-    completition(nil)
+    completion(nil)
   }
 }

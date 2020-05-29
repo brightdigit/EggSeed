@@ -9,6 +9,6 @@ protocol Expander {
     fromURL url: URL,
     toURL url: URL,
     forEach: (ExpansionEntry, (Result<Bool, Error>) -> Void) -> Void,
-    completition: @escaping (Error?) -> Void
+    completion: @escaping (Error?) -> Void
   )
 }

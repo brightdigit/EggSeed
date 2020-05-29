@@ -5,6 +5,6 @@ import Foundation
 #endif
 
 protocol CISystem {
-  func remove(fromURL url: URL, _ completition: @escaping (Error?) -> Void)
-  func verify(atURL url: URL, for platforms: SupportedPlatforms, _ completition: @escaping (Error?) -> Void)
+  func remove(fromURL url: URL, _ completion: @escaping (Error?) -> Void)
+  func verify(atURL url: URL, for platforms: SupportedPlatforms, _ completion: @escaping (Error?) -> Void)
 }

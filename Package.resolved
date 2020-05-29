@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/eneko/SourceDocs",
         "state": {
           "branch": null,
-          "revision": "354e3e6310b4bab616aa9c9ec0798644f874e4d2",
-          "version": "1.1.0"
+          "revision": "0f46a3096d1d38d6e297f58e21468f176a06e300",
+          "version": "1.0.0"
         }
       },
       {
@@ -125,6 +125,15 @@
           "branch": null,
           "revision": "77a4dbbb477a8110eb8765e3c44c70fb4929098f",
           "version": "0.29.0"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "223d62adc52d51669ae2ee19bdb8b7d9fd6fcd9c",
+          "version": "0.0.6"
         }
       },
       {
