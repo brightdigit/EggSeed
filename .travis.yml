@@ -2,9 +2,20 @@ jobs:
   include:
     - os: linux
       dist: bionic
-      sudo: required
+      arch: amd64
+    - os: linux
+      dist: focal
+      arch: amd64
+    - os: linux
+      dist: bionic
+      arch: arm64
+    - os: linux
+      dist: focal
+      arch: arm64
     - os: osx
       osx_image: xcode11.4
+    - os: osx
+      osx_image: xcode11.5
 env:
   global:
   - FRAMEWORK_NAME=EggSeed

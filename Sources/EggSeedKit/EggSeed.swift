@@ -36,7 +36,7 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   @Option() public var userName: String?
   @Option() public var path: String?
 
-  public static func main(by runner: Runner, _ arguments: [String]? = nil) -> Never {
+  public static func main(by runner: Runner, _ arguments: [String]? = nil) {
     Self.setupRunner(runner)
     return Self.main(arguments)
   }
