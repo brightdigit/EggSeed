@@ -7,6 +7,7 @@
 
 [![macOS](https://github.com/brightdigit/EggSeed/workflows/macOS/badge.svg)](https://github.com/brightdigit/EggSeed/actions?query=workflow%3AmacOS)
 [![ubuntu](https://github.com/brightdigit/EggSeed/workflows/ubuntu/badge.svg)](https://github.com/brightdigit/EggSeed/actions?query=workflow%3Aubuntu)
+[![arm](https://github.com/brightdigit/EggSeed/workflows/arm/badge.svg)](https://github.com/brightdigit/EggSeed/actions?query=workflow%3Aarm)
 [![Travis (.com)](https://img.shields.io/travis/com/brightdigit/EggSeed?logo=travis)](https://travis-ci.com/brightdigit/EggSeed)
 [![CircleCI](https://img.shields.io/circleci/build/github/brightdigit/EggSeed?label=xenial&logo=circleci&token=8772831917d1744b175dd1d52ded916373f9a3ec)](https://circleci.com/gh/brightdigit/EggSeed)
 [![Bitrise](https://img.shields.io/bitrise/238176596b2afbd3?label=macOS&logo=bitrise&token=dRGT3cqlMSHKC93wAK01ww)](https://app.bitrise.io/app/238176596b2afbd3)
