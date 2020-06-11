@@ -32,7 +32,7 @@ jobs:
       env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Build Documentation
-      run: sourcedocs generate --spm-module eggseed
+      run: sourcedocs generate --spm-module eggseed -r
     - name: Verify Valid Swift Package
       run: curl -s https://raw.githubusercontent.com/daveverwer/SwiftPMLibrary/master/script.sh | bash -s -- mine
     - name: Commit files

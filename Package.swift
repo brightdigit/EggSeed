@@ -23,7 +23,7 @@ let package = Package(
     .package(url: "https://github.com/weichsel/ZIPFoundation", .upToNextMajor(from: "0.9.0")),
     .package(url: "https://github.com/shibapm/Komondor", from: "1.0.5"),
     .package(url: "https://github.com/eneko/SourceDocs", from: "1.0.0"),
-    .package(url: "https://github.com/SwiftPackageIndex/PackageListValidator", .branch("release/0.0.1")),
+    .package(url: "https://github.com/SwiftPackageIndex/PackageListValidator", .branch("master")),
     .package(url: "https://github.com/mxcl/PromiseKit.git", from: "7.0.0-alpha.3")
   ],
   targets: [
@@ -59,7 +59,7 @@ let package = Package(
         "swift test --enable-code-coverage --enable-test-discovery --generate-linuxmain",
         "swift run swiftformat .",
         "swift run swiftlint autocorrect",
-        "swift run sourcedocs generate --spm-module eggseed",
+        "swift run sourcedocs generate --spm-module eggseed -r",
         "swift run swiftpmls mine",
         "git add .",
         "swift run swiftformat --lint .",

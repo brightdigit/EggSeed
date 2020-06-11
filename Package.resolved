@@ -59,8 +59,8 @@
         "package": "PackageListValidator",
         "repositoryURL": "https://github.com/SwiftPackageIndex/PackageListValidator",
         "state": {
-          "branch": "release/0.0.1",
-          "revision": "6a692fa2e88edb2f4e0ad1da3e00ebe65edd0615",
+          "branch": "master",
+          "revision": "cd7d30ae34e69340e4a3f5981f4d5c08400cf8c5",
           "version": null
         }
       },
