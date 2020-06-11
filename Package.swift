@@ -59,7 +59,7 @@ let package = Package(
         "swift test --enable-code-coverage --enable-test-discovery --generate-linuxmain",
         "swift run swiftformat .",
         "swift run swiftlint autocorrect",
-        "swift run sourcedocs generate --spm-module eggseed",
+        "swift run sourcedocs generate --spm-module eggseed -r",
         "swift run swiftpmls mine",
         "git add .",
         "swift run swiftformat --lint .",

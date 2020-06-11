@@ -166,5 +166,3 @@ Pods
 *.lcov
 Brewfile.lock.json
 Example
-
-Documentation/Reference/README.md
