@@ -23,7 +23,7 @@ let package = Package(
     .package(url: "https://github.com/weichsel/ZIPFoundation", .upToNextMajor(from: "0.9.0")),
     .package(url: "https://github.com/shibapm/Komondor", from: "1.0.5"),
     .package(url: "https://github.com/eneko/SourceDocs", from: "1.0.0"),
-    .package(url: "https://github.com/SwiftPackageIndex/PackageListValidator", .branch("master")),
+    .package(url: "https://github.com/SwiftPackageIndex/PackageListValidator", from: "0.1.0"),
     .package(url: "https://github.com/mxcl/PromiseKit.git", from: "7.0.0-alpha.3")
   ],
   targets: [
