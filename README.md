@@ -1,7 +1,7 @@
 <img src="eggseed.svg" height="150px">&nbsp;<img src="word.svg" height="100px">
 
 [![SwiftPM](https://img.shields.io/badge/SPM-Linux%20%7C%20iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS-success?logo=swift)](https://swift.org)
-[![Twitter](https://img.shields.io/badge/twitter-@brightdigit-blue.svg?style=flat)](http://twitter.com/brightdigit)
+[![Twitter](https://img.shields.io/badge/twitter-@leogdion-blue.svg?style=flat)](http://twitter.com/leogdion)
 ![GitHub](https://img.shields.io/github/license/brightdigit/EggSeed)
 ![GitHub issues](https://img.shields.io/github/issues/brightdigit/EggSeed)
 
@@ -108,6 +108,12 @@ Future Released Will Include:
 * README template and badges
 
 Feel free to [add an issue for any suggestions](https://github.com/brightdigit/EggSeed/issues).
+
+## Contact
+
+Follow and contact me on [Twitter](http://twitter.com/leogdion). If you find an issue, 
+just [open a ticket](https://github.com/brightdigit/EggSeed/issues/new) on it. Pull 
+requests are warmly welcome as well.
 
 # License
 
