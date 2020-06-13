@@ -24,7 +24,7 @@
 
 **EggSeed** is a command-line tool for creating swift pacakges with continous integration support. While `swift package init`, creates simple packages, there is no guarantee that your package will work on everyone else's device. That's where _continuous integration_ goes in. 
 
-By using `eggseed`, you can create a package with full integration into CI services such as: _GitHub Actions, Travis-CI, BitRise, CircleCI_ and more. Not only that but **EggSeed** also sets up code documentation, linting, and more...
+By using `eggseed`, you can create a package with full integration into CI services such as: _[GitHub Actions](https://github.com/actions), [Travis-CI](https://travis-ci.com/), [BitRise](https://www.bitrise.io), [CircleCI](https://circleci.com)_ and more. Not only that but **EggSeed** also sets up code documentation, linting, and more...
 
 Check out the [roadmap below](#roadmap) for more details on future integrations.
 
@@ -90,20 +90,21 @@ All code [documentation is here.](/Documentation/Reference/README.md)
 
 Future Released Will Include:
 
-* Choosing a License (MIT, GPL, Apache, etc...)
+* Choosing a License ([MIT](https://choosealicense.com/licenses/mit/), [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/), [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/), etc...)
 * Choosing Target OS and Version for CI (macOS v10_12, watchOS v6_2, Ubuntu Focal, iOS 12, etc...)
-* Choosing CI Services (GitHub Actions, Travis-CI, CircleCI, BitRise, etc...)
+* Choosing CI Services ([GitHub Actions](https://github.com/actions), [Travis-CI](https://travis-ci.com/), [BitRise](https://www.bitrise.io), [CircleCI](https://circleci.com), etc...)
 * Custom Template URLs
-* Adding Cocoapod Support
-* Adding Homebrew Support
-* Choosing Code Documentation Tool (SourceDocs, Jazzy, etc...)
-* Choosing Linting Support (SwiftFormat, SwiftLint, etc...)
+* Adding [Cocoapod](https://cocoapods.org) Support
+* Adding [Carthage](https://github.com/Carthage/Carthage) Support
+* Adding [Homebrew](https://brew.sh) Support
+* Choosing Code Documentation Tool ([SourceDocs](https://github.com/eneko/SourceDocs), [Jazzy](https://github.com/realm/jazzy), etc...)
+* Choosing Linting Support ([SwiftFormat](https://github.com/nicklockwood/SwiftFormat), [SwiftLint](https://github.com/realm/SwiftLint), etc...)
 * Allow For Multiple Products On Setup
 * Choosing Architecture Support (amd64, aarch64, etc...)
-* Support for Komondor
-* Support for Rocket
-* Support for Swift Package Index
-* Automated Code Quality Integrations (codebeat, code climate, Code Factory, etc...)
+* Support for [Komondor](https://github.com/shibapm/Komondor)
+* Support for [Rocket](https://github.com/shibapm/Rocket)
+* Support for [Swift Package Index](https://swiftpackageindex.com)
+* Automated Code Quality Integrations ([codebeat](https://codebeat.co), [Code Climate](https://codeclimate.com), [Code Factory](https://www.codefactor.io), etc...)
 * README template and badges
 
 Feel free to [add an issue for any suggestions](https://github.com/brightdigit/EggSeed/issues).
