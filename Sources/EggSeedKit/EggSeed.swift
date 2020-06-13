@@ -2,6 +2,8 @@ import ArgumentParser
 import Foundation
 
 public struct EggSeed: ParsableCommand, EggSeedConfiguration {
+  public static var configuration = CommandConfiguration(
+    commandName: "eggseed")
   static var runner: Runner!
 
   static func setupRunner(_ runner: Runner) {
@@ -32,9 +34,9 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   #warning("Add Linting Options")
 
   #warning("Allow Multiple Products")
-  @Option(default: .library) public var packageType: SwiftPackageType
-  @Option() public var userName: String?
-  @Option() public var path: String?
+  @Option(default: .library, help: "Swift Package Type") public var packageType: SwiftPackageType
+  @Option(help: "User name or Owner of Repostory.") public var userName: String?
+  @Option(help: "Root path of the Swift Package.") public var path: String?
 
   public static func main(by runner: Runner, _ arguments: [String]? = nil) {
     Self.setupRunner(runner)
