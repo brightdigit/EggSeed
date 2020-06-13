@@ -22,9 +22,9 @@
 
 ---
 
-**EggSeed** is a command-line tool for creating Swift Pacakges with Continous Integration support. While `swift package init`, creates simple packages, there is no guarantee that your package will work on everyone else's device. That's where Continuous Integration goes in. 
+**EggSeed** is a command-line tool for creating swift pacakges with continous integration support. While `swift package init`, creates simple packages, there is no guarantee that your package will work on everyone else's device. That's where _continuous integration_ goes in. 
 
-By using `eggseed`, you can create a package with full integration into CI services such as: GitHub Actions, Travis-CI, BitRise, CircleCI and more. Not only that but **EggSeed** also sets up code documentation, linting, and more...
+By using `eggseed`, you can create a package with full integration into CI services such as: _GitHub Actions, Travis-CI, BitRise, CircleCI_ and more. Not only that but **EggSeed** also sets up code documentation, linting, and more...
 
 Check out the [roadmap below](#roadmap) for more details on future integrations.
 
