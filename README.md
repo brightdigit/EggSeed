@@ -20,27 +20,18 @@
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/brightdigit/EggSeed)](https://codeclimate.com/github/brightdigit/EggSeed)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
-# Requirements 
+# Installation
 
-* [CocoaPods](https://cocoapods.org)
-* [XCodeGen](https://github.com/yonaskolb/XcodeGen)
-* [SourceDocs](https://github.com/eneko/SourceDocs)
+## Mint
 
-# How to get started
+# Usage
 
-1. [Use the template](https://github.com/brightdigit/EggSeed/generate)
-2. Run [`./setup.sh`](https://github.com/brightdigit/EggSeed/blob/master/setup.sh) once you have your own repo. 
-3. It will create the corresponding files for your Swift Package/Cocoapod/Carthage.
-4. Customize by 
-  * updating Package.swift
-  * supported OSes in Pod spec
-  * update [SwiftFormat](https://github.com/brightdigit/EggSeed/blob/master/.swiftformat) and [SwiftLint](https://github.com/brightdigit/EggSeed/blob/master/.swiftlint.yml) settings
-  * Add Documentation and Notes to README.md
-  * update [travis-ci](https://github.com/brightdigit/EggSeed/blob/master/.travis.yml) or [github actions files](https://github.com/brightdigit/EggSeed/tree/master/.github/workflows)
-  * integrate third-party analysis services and badges such as [CodeCov](https://codecov.io), [CodeClimate](https://codeclimate.com), [CodeFactor](https://www.codefactor.io/dashboard), [Hound](https://houndci.com)
-5. Code Away!
-5. Add to [SwiftPM](https://github.com/daveverwer/SwiftPMLibrary)
+# Roadmap
 
-# DESCRIPTION HERE
+# License
 
-[Documentation Here](/docs/README.md)
+# Contact
+
+# Documentation
+
+[Documentation Here](/Documentation/Reference/README.md)
