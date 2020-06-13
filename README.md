@@ -20,18 +20,94 @@
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/brightdigit/EggSeed)](https://codeclimate.com/github/brightdigit/EggSeed)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
+---
+
+**EggSeed** is a command-line tool for creating swift pacakges with continous integration support. While `swift package init`, creates simple packages, there is no guarantee that your package will work on everyone else's device. That's where _continuous integration_ goes in. 
+
+By using `eggseed`, you can create a package with full integration into CI services such as: _GitHub Actions, Travis-CI, BitRise, CircleCI_ and more. Not only that but **EggSeed** also sets up code documentation, linting, and more...
+
+Check out the [roadmap below](#roadmap) for more details on future integrations.
+
 # Installation
 
-## Mint
+### [Mint](https://github.com/yonaskolb/mint)
+```sh
+mint install brightdigit/EggSeed
+```
+
+### Swift Package Manager
+
+**Use as CLI**
+
+```shell
+git clone https://github.com/brightdigit/EggSeed.git
+cd EggSeed
+swift run eggseed
+```
+
+**Use as dependency**
+
+Add the following to your Package.swift file's dependencies:
+
+```swift
+.package(url: "https://github.com/brightdigit/EggSeed.git", .branch("master")),
+```
+
+And then import wherever needed: `import EggSeed`
 
 # Usage
 
-# Roadmap
+```
+USAGE: eggseed [--package-type <package-type>] [--user-name <user-name>] [--path <path>]
 
-# License
+OPTIONS:
+  --package-type <package-type>
+                          Swift Package Type (default: library)
+  --user-name <user-name> User name or Owner of Repostory. 
+  --path <path>           Root path of the Swift Package. 
+  -h, --help              Show help information.
+```
 
-# Contact
+**Eggseed** can be run without any options. However there are a few options which can help customize your package:
+
+## Package Type `--package-type` (library or executable)
+
+Desginates what type of package you are creating.
+
+## User Name `--user-name` 
+
+The owner to user name of the repository. If not specified, EggSeed will attempt to parse the URL for that information.
+
+## Path `--path`
+
+Directory to create the Swift Package in, otherwise use the current directory.
 
 # Documentation
 
-[Documentation Here](/Documentation/Reference/README.md)
+All code [documentation is here.](/Documentation/Reference/README.md)
+
+# Roadmap
+
+Future Released Will Include:
+
+* Choosing a License (MIT, GPL, Apache, etc...)
+* Choosing Target OS and Version for CI (macOS v10_12, watchOS v6_2, Ubuntu Focal, iOS 12, etc...)
+* Choosing CI Services (GitHub Actions, Travis-CI, CircleCI, BitRise, etc...)
+* Custom Template URLs
+* Adding Cocoapod Support
+* Adding Homebrew Support
+* Choosing Code Documentation Tool (SourceDocs, Jazzy, etc...)
+* Choosing Linting Support (SwiftFormat, SwiftLint, etc...)
+* Allow For Multiple Products On Setup
+* Choosing Architecture Support (amd64, aarch64, etc...)
+* Support for Komondor
+* Support for Rocket
+* Support for Swift Package Index
+* Automated Code Quality Integrations (codebeat, code climate, Code Factory, etc...)
+* README template and badges
+
+Feel free to [add an issue for any suggestions](https://github.com/brightdigit/EggSeed/issues).
+
+# License
+
+EggSeed is licensed under the MIT license. See [LICENSE](LICENSE) for more info.
