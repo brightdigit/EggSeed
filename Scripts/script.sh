@@ -25,4 +25,4 @@ else
   bash <(curl https://codecov.io/bash) -F travis -F $RELEASE_NAME -F $ARCH -n $TRAVIS_JOB_NUMBER-$TRAVIS_OS_NAME
 fi
 
-curl -s https://raw.githubusercontent.com/daveverwer/SwiftPMLibrary/master/script.sh | bash -s -- mine
+curl -s https://raw.githubusercontent.com/SwiftPackageIndex/PackageList/master/script.sh | bash -s -- mine

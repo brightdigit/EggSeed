@@ -42,7 +42,7 @@
   * update [travis-ci](https://github.com/brightdigit/EggSeed/blob/master/.travis.yml) or [github actions files](https://github.com/brightdigit/EggSeed/tree/master/.github/workflows)
   * integrate third-party analysis services and badges such as [CodeCov](https://codecov.io), [CodeClimate](https://codeclimate.com), [CodeFactor](https://www.codefactor.io/dashboard), [Hound](https://houndci.com)
 5. Code Away!
-5. Add to [SwiftPM](https://github.com/daveverwer/SwiftPMLibrary)
+5. Add to [SwiftPM](https://github.com/SwiftPackageIndex/PackageList)
 
 # DESCRIPTION HERE
 
