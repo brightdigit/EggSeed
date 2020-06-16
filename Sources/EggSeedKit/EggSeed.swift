@@ -13,7 +13,7 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public init() {}
 
   // Licence
-  #warning("Add licence options")
+  @Option(help: "Software License.") public var license: License?
 
   // OS
   #warning("Add OS targets")

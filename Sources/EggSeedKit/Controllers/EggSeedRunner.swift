@@ -19,13 +19,12 @@ public class EggSeedRunner: Runner {
     _ completion: @escaping (EggSeedError?) -> Void
   ) -> Cancellable {
     let url = URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
-    let filesFilter = [".github/workflows/macOS.yml",
-                       ".github/workflows/ubuntu.yml",
-                       ".travis.yml",
-                       "bitrise.yml",
-                       ".circleci/config.yml",
+    let filesFilter = [".eggseed/.github/workflows/macOS.yml",
+                       ".eggseed/.github/workflows/ubuntu.yml",
+                       ".eggseed/.travis.yml",
+                       ".eggseed/bitrise.yml",
+                       ".eggseed/.circleci/config.yml",
                        "README.md",
-                       "LICENSE",
                        "Example/project.yml"]
     let destinationFolderURL = URL(fileURLWithPath: configuration.path ?? FileManager.default.currentDirectoryPath)
 
