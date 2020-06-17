@@ -9,4 +9,5 @@ public protocol EggSeedConfiguration {
   var path: String? { get }
   var packageType: SwiftPackageType { get }
   var license: License? { get }
+  var templateURL: URL { get }
 }

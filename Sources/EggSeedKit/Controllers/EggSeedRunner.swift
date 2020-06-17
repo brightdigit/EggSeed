@@ -18,7 +18,7 @@ public class EggSeedRunner: Runner {
     withConfiguration configuration: EggSeedConfiguration,
     _ completion: @escaping (EggSeedError?) -> Void
   ) -> Cancellable {
-    let url = URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
+    let url = configuration.templateURL
     let filesFilter = [".eggseed/.github/workflows/macOS.yml",
                        ".eggseed/.github/workflows/ubuntu.yml",
                        ".eggseed/.travis.yml",
@@ -34,12 +34,9 @@ public class EggSeedRunner: Runner {
       if let readUserName = configuration.userName {
         resolver.fulfill(readUserName)
       } else {
-        gitterface.getRemoteURL(for: "origin", at: destinationFolderURL) { result in
-          resolver.resolve(result.map {
-            $0.deletingLastPathComponent().lastPathComponent
-          }.mapError { _ in
-            EggSeedError.missingValue("userName")
-            })
+        gitterface.getSpecs(for: "origin", at: destinationFolderURL) { result in
+          resolver.resolve(result.map { $0.owner }.mapError { _ in EggSeedError.missingValue("userName")
+          })
         }
       }
     }

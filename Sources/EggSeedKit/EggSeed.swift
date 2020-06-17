@@ -16,13 +16,20 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   @Option(help: "Software License.") public var license: License?
 
   // OS
-  #warning("Add OS targets")
+  @Option(help: "Platforms and OSes") public var platforms: [SupportedPlatform]
 
   // CI
   #warning("Add CI targets")
 
   // Template
-  #warning("Add Template URLS")
+
+  // @Option(default:  URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!, help: "Template URL")
+  @Option(default: "https://github.com/brightdigit/eggseed-template/archive/master.zip")
+  public var template: String
+
+  public var templateURL: URL {
+    return URL(string: template) ?? URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
+  }
 
   // cocoapods support
   #warning("Add Cocoapods Support Flag")

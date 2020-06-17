@@ -11,4 +11,3 @@ excluded:
   - Tests/*/XCTestManifests.swift
   - DerivedData
   - .build
-  - _temp
