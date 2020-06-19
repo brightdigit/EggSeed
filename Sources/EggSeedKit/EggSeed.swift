@@ -63,7 +63,7 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
 
   // sourcedocs or jazzy
   #warning("Add Documentation Tool Option")
-  @Option(default: .sourcedocs, help: "Documentation Tool")
+  @Flag(default: .sourcedocs, help: "Documentation Tool")
   public var documentation: DocumentationTooling?
 
   // swiftformat or/and swiftlint danger etc...

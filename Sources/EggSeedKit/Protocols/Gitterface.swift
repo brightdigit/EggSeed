@@ -11,7 +11,7 @@ public struct GitHubSpec {
   let repo: String
 
   public init(string: String) throws {
-    if let url = URL(string: string) {
+    if let url = URL(string: string), url.scheme != nil {
       repo = url.deletingPathExtension().lastPathComponent
       owner = url.deletingLastPathComponent().lastPathComponent
     } else {
