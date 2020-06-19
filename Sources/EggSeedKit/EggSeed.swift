@@ -1,6 +1,27 @@
 import ArgumentParser
 import Foundation
 
+public enum StylingTool: Int, CaseIterable {
+  case swiftformat = 1
+  case swiftlint = 2
+}
+
+public struct StylingToolOption: OptionSet, ExpressibleByArgument {
+  public let rawValue: StylingTool.RawValue
+  public init(rawValue: StylingTool.RawValue) {
+    self.rawValue = rawValue
+  }
+
+  public static let swiftformat = Self(rawValue: StylingTool.swiftformat.rawValue)
+  public static let swiftlint = Self(rawValue: StylingTool.swiftlint.rawValue)
+  public static let none = Self()
+  public static let all = Self(StylingTool.allCases.map { Self(rawValue: $0.rawValue) })
+}
+
+public enum DocumentationTooling: Int, ExpressibleByArgument {
+  case sourcedocs = 1
+}
+
 public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public static var configuration = CommandConfiguration(
     commandName: "eggseed")
@@ -20,7 +41,8 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
 
   // CI
   #warning("Add CI targets")
-
+  @Option(default: ContinuousIntegration.all, help: "Continuous Integration Services")
+  public var ci: ContinuousIntegration
   // Template
 
   // @Option(default:  URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!, help: "Template URL")
@@ -33,12 +55,21 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
 
   // cocoapods support
   #warning("Add Cocoapods Support Flag")
+  @Flag(help: "Supports Cocoapods")
+  public var cocoapods: Bool
+
+  @Option(default: true, help: "Use Komondor")
+  public var komondor: Bool
 
   // sourcedocs or jazzy
   #warning("Add Documentation Tool Option")
+  @Option(default: .sourcedocs, help: "Documentation Tool")
+  public var documentation: DocumentationTooling?
 
   // swiftformat or/and swiftlint danger etc...
   #warning("Add Linting Options")
+  @Option(default: .all, help: "Formatting, Linters, Styling Tools")
+  public var linters: StylingToolOption
 
   #warning("Allow Multiple Products")
   @Option(default: .library, help: "Swift Package Type") public var packageType: SwiftPackageType

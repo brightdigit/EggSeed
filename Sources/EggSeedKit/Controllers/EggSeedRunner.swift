@@ -1,4 +1,5 @@
 import Foundation
+import Mustache
 import PromiseKit
 
 #if canImport(FoundationNetworking)
@@ -49,16 +50,31 @@ public class EggSeedRunner: Runner {
       }
     }
 
+    let repo = TemplateRepository()
+    repo.configuration.tagDelimiterPair = ("<%", "%>")
+
     let queue = DispatchQueue.global(qos: .userInitiated)
     let cancellable = when(fulfilled: userNamePromise, downloadPromise).then(on: queue) { (args) -> Promise<Void> in
       let (userName, url) = args
       return Promise<Void> { resolver in
         self.expander.extract(fromURL: url, toURL: destinationFolderURL, forEach: { item, completed in
-          if filesFilter.contains(item.relativePath), var text = String(data: item.data, encoding: .utf8) {
-            text = text.replacingOccurrences(of: "_PACKAGE_NAME", with: packageName)
-            text = text.replacingOccurrences(of: "_USER_NAME", with: userName)
-            let url = destinationFolderURL.appendingPathComponent(item.relativePath)
+          if filesFilter.contains(item.relativePath) || item.relativePath.hasPrefix(".eggseed/"), let templateText = String(data: item.data, encoding: .utf8) {
+//            text = text.replacingOccurrences(of: "_PACKAGE_NAME", with: packageName)
+//            text = text.replacingOccurrences(of: "_USER_NAME", with: userName)
+            let relativePath: String
+            if item.relativePath.hasPrefix(".eggseed/") {
+              relativePath = item.relativePath.components(separatedBy: "/").dropFirst().joined(separator: "/")
+            } else {
+              relativePath = item.relativePath
+            }
+            let url = destinationFolderURL.appendingPathComponent(relativePath)
             let result = Result<Bool, Error> {
+              if !FileManager.default.fileExists(atPath: url.deletingLastPathComponent().path) {
+                try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+              }
+              let template = try repo.template(string: templateText)
+              let text = try template.render(["packageName": packageName, "userName": userName])
+
               try text.write(to: url, atomically: true, encoding: .utf8)
               return true
             }
