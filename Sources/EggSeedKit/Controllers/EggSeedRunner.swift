@@ -1,5 +1,5 @@
 import Foundation
-import Mustache
+import mustache
 import PromiseKit
 
 #if canImport(FoundationNetworking)
@@ -50,8 +50,9 @@ public class EggSeedRunner: Runner {
       }
     }
 
-    let repo = TemplateRepository()
-    repo.configuration.tagDelimiterPair = ("<%", "%>")
+    let parser = MustacheParser()
+    parser.openCharacter = "["
+    parser.closeCharacter = "]"
 
     let queue = DispatchQueue.global(qos: .userInitiated)
     let cancellable = when(fulfilled: userNamePromise, downloadPromise).then(on: queue) { (args) -> Promise<Void> in
@@ -72,9 +73,8 @@ public class EggSeedRunner: Runner {
               if !FileManager.default.fileExists(atPath: url.deletingLastPathComponent().path) {
                 try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
               }
-              let template = try repo.template(string: templateText)
-              let text = try template.render(["packageName": packageName, "userName": userName])
-
+              let template = parser.parse(string: templateText)
+              let text = template.render(object: ["packageName": packageName, "userName": userName])
               try text.write(to: url, atomically: true, encoding: .utf8)
               return true
             }
