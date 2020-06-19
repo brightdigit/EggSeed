@@ -7,6 +7,6 @@ import PromiseKit
 
 public protocol Cancellable {}
 
-extension URLSessionDownloadTask: Cancellable {}
+extension URLSessionTask: Cancellable {}
 
 extension Promise: Cancellable {}

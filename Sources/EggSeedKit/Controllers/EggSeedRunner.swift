@@ -12,6 +12,7 @@ public class EggSeedRunner: Runner {
   let gitterface: Gitterface = ProcessGitterface()
   let expander: Expander = ArchiveExpander()
   let packageFactory: PackageFactory = ProcessPackageFactory()
+  let licenseIssuer: LicenseIssuer = LicenseDownloadIssuer()
 
   public init() {}
 
@@ -54,14 +55,16 @@ public class EggSeedRunner: Runner {
     parser.openCharacter = "["
     parser.closeCharacter = "]"
 
+    var savedUserName: String!
+
     let queue = DispatchQueue.global(qos: .userInitiated)
     let cancellable = when(fulfilled: userNamePromise, downloadPromise).then(on: queue) { (args) -> Promise<Void> in
       let (userName, url) = args
+      savedUserName = userName
+
       return Promise<Void> { resolver in
         self.expander.extract(fromURL: url, toURL: destinationFolderURL, forEach: { item, completed in
           if filesFilter.contains(item.relativePath) || item.relativePath.hasPrefix(".eggseed/"), let templateText = String(data: item.data, encoding: .utf8) {
-//            text = text.replacingOccurrences(of: "_PACKAGE_NAME", with: packageName)
-//            text = text.replacingOccurrences(of: "_USER_NAME", with: userName)
             let relativePath: String
             if item.relativePath.hasPrefix(".eggseed/") {
               relativePath = item.relativePath.components(separatedBy: "/").dropFirst().joined(separator: "/")
@@ -87,6 +90,10 @@ public class EggSeedRunner: Runner {
     }.then(on: queue) { _ in
       Promise { resolver in
         self.packageFactory.create(atURL: destinationFolderURL, withType: configuration.packageType, resolver.resolve)
+      }
+    }.then(on: queue) { _ in
+      Promise { resolver in
+        self.licenseIssuer.issue(configuration.license, to: destinationFolderURL, withSession: self.session, usingFullName: savedUserName, resolver.resolve)
       }
     }.map(on: queue) { (_) -> EggSeedError? in
       nil
