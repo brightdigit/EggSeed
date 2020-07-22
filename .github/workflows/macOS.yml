@@ -33,8 +33,8 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     - name: Build Documentation
       run: sourcedocs generate --spm-module eggseed -r
-    - name: Verify Valid Swift Package
-      run: curl -s https://raw.githubusercontent.com/SwiftPackageIndex/PackageList/main/script.sh | bash -s -- mine
+    #- name: Verify Valid Swift Package
+    #  run: curl -s https://raw.githubusercontent.com/SwiftPackageIndex/PackageList/main/script.sh | bash -s -- mine
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
