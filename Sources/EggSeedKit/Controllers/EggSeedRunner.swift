@@ -85,7 +85,7 @@ public class EggSeedRunner: Runner {
           } else {
             completed(.success(false))
           }
-      }, completion: resolver.resolve)
+        }, completion: resolver.resolve)
       }
     }.then(on: queue) { _ in
       Promise { resolver in
