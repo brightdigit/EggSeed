@@ -34,7 +34,7 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public init() {}
 
   // Licence
-  @Option(help: "Software License.") public var license: License?
+  @Option(default: .mit, help: "Software License.") public var license: License
 
   // OS
   @Option(help: "Platforms and OSes") public var platforms: [SupportedPlatform]
@@ -63,8 +63,8 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
 
   // sourcedocs or jazzy
   #warning("Add Documentation Tool Option")
-  @Flag(default: .sourcedocs, help: "Documentation Tool")
-  public var documentation: DocumentationTooling?
+  @Option(default: .sourcedocs, help: "Documentation Tool")
+  public var documentation: DocumentationTooling
 
   // swiftformat or/and swiftlint danger etc...
   #warning("Add Linting Options")

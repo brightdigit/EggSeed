@@ -8,11 +8,7 @@ public struct LicenseData: Codable {
 public struct LicenseDownloadIssuer: LicenseIssuer {
   public let fileManager: FileManager = FileManager.default
   public let baseURL = URL(string: "https://api.github.com/licenses")!
-  public func issue(_ license: License?, to destinationURL: URL, withSession session: Session, usingFullName fullName: String, _ completion: @escaping (Error?) -> Void) {
-    guard let license = license else {
-      completion(nil)
-      return
-    }
+  public func issue(_ license: License, to destinationURL: URL, withSession session: Session, usingFullName fullName: String, _ completion: @escaping (Error?) -> Void) {
     let year = Calendar.current.component(.year, from: Date())
     let data = ["year": year, "fullname": fullName] as [String: Any]
     let licenseURL = destinationURL.appendingPathComponent("LICENSE")
