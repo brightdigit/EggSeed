@@ -34,10 +34,10 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public init() {}
 
   // Licence
-  @Option(default: .mit, help: "Software License.") public var license: License
+  @Option(help: "Software License.") public var license: License = .mit
 
   // OS
-  @Option(help: "Platforms and OSes") public var platforms: [SupportedPlatform]
+  @Option(help: "Platforms and OSes") public var platforms: [SupportedPlatform] = []
 
   // CI
   #warning("Add CI targets")
@@ -45,9 +45,9 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public var ci: ContinuousIntegration
   // Template
 
-  // @Option(default:  URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!, help: "Template URL")
-  @Option(default: "https://github.com/brightdigit/eggseed-template/archive/master.zip")
-  public var template: String
+  
+  @Option()
+  public var template: String = "https://github.com/brightdigit/eggseed-template/archive/master.zip"
 
   public var templateURL: URL {
     return URL(string: template) ?? URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
@@ -56,23 +56,23 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   // cocoapods support
   #warning("Add Cocoapods Support Flag")
   @Flag(help: "Supports Cocoapods")
-  public var cocoapods: Bool
+  public var cocoapods: Bool = false
 
-  @Option(default: true, help: "Use Komondor")
-  public var komondor: Bool
+  @Option(help: "Use Komondor")
+  public var komondor: Bool = true
 
   // sourcedocs or jazzy
   #warning("Add Documentation Tool Option")
-  @Option(default: .sourcedocs, help: "Documentation Tool")
-  public var documentation: DocumentationTooling
+  @Option(help: "Documentation Tool")
+  public var documentation: DocumentationTooling = .sourcedocs
 
   // swiftformat or/and swiftlint danger etc...
   #warning("Add Linting Options")
-  @Option(default: .all, help: "Formatting, Linters, Styling Tools")
-  public var linters: StylingToolOption
+  @Option(help: "Formatting, Linters, Styling Tools")
+  public var linters: StylingToolOption = .all
 
   #warning("Allow Multiple Products")
-  @Option(default: .library, help: "Swift Package Type") public var packageType: SwiftPackageType
+  @Option(help: "Swift Package Type") public var packageType: SwiftPackageType = .library
   @Option(help: "User name or Owner of Repostory.") public var userName: String?
   @Option(help: "Root path of the Swift Package.") public var path: String?
 
