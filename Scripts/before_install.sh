@@ -1,8 +1,7 @@
 #!/bin/bash
 
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
-  brew update >/dev/null
-  brew bundle
+  :
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
   RELEASE_DOT=$(lsb_release -sr)
   RELEASE_NUM=${RELEASE_DOT//[-._]/}
@@ -29,9 +28,9 @@ elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
     
   if [[ $TRAVIS_CPU_ARCH == "arm64" ]]; then
     curl -s https://packagecloud.io/install/repositories/swift-arm/release/script.deb.sh | sudo bash
-    sudo apt-get install swift5
+    sudo apt-get install swift-lang
   else 
-  wget https://swift.org/builds/swift-${SWIFT_VER}-release/ubuntu${RELEASE_NUM}/swift-${SWIFT_VER}-RELEASE/swift-${SWIFT_VER}-RELEASE-ubuntu${RELEASE_DOT}.tar.gz
-  tar xzf swift-${SWIFT_VER}-RELEASE-ubuntu${RELEASE_DOT}.tar.gz
+    wget https://swift.org/builds/swift-${SWIFT_VER}-release/ubuntu${RELEASE_NUM}/swift-${SWIFT_VER}-RELEASE/swift-${SWIFT_VER}-RELEASE-ubuntu${RELEASE_DOT}.tar.gz
+    tar xzf swift-${SWIFT_VER}-RELEASE-ubuntu${RELEASE_DOT}.tar.gz
   fi 
 fi

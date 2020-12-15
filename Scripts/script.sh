@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $TRAVIS_OS_NAME = 'osx' ]]; then
-  swiftformat --lint . && swiftlint
+  swift run swiftformat --lint . && swift run swiftlint
 elif [[ $TRAVIS_OS_NAME = 'linux' ]]; then
   # What to do in Ubunutu
   RELEASE_DOT=$(lsb_release -sr)
@@ -24,5 +24,3 @@ else
   llvm-cov export -format="lcov" .build/${ARCH_PREFIX}-unknown-linux-gnu/debug/${FRAMEWORK_NAME}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
   bash <(curl https://codecov.io/bash) -F travis -F $RELEASE_NAME -F $ARCH -n $TRAVIS_JOB_NUMBER-$TRAVIS_OS_NAME
 fi
-
-curl -s https://raw.githubusercontent.com/SwiftPackageIndex/PackageList/main/script.sh | bash -s -- mine
