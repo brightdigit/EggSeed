@@ -45,7 +45,6 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   public var ci: ContinuousIntegration
   // Template
 
-  
   @Option()
   public var template: String = "https://github.com/brightdigit/eggseed-template/archive/master.zip"
 

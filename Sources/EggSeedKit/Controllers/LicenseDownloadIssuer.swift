@@ -6,7 +6,7 @@ public struct LicenseData: Codable {
 }
 
 public struct LicenseDownloadIssuer: LicenseIssuer {
-  public let fileManager: FileManager = FileManager.default
+  public let fileManager = FileManager.default
   public let baseURL = URL(string: "https://api.github.com/licenses")!
   public func issue(_ license: License, to destinationURL: URL, withSession session: Session, usingFullName fullName: String, _ completion: @escaping (Error?) -> Void) {
     let year = Calendar.current.component(.year, from: Date())
