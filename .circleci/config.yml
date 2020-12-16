@@ -49,45 +49,13 @@ jobs:
           name: Run tests
           command: swift test --enable-test-discovery --enable-code-coverage
       - run:
-          name: Verify Valid Swift Package
-          command: curl -s https://raw.githubusercontent.com/SwiftPackageIndex/PackageList/main/script.sh | bash -s -- mine
-      - run:
           name: Prepare Code Coverage
           command: llvm-cov export -format="lcov" .build/x86_64-unknown-linux-gnu/debug/${PACKAGE_NAME}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
       - codecov/upload:
           file: << pipeline.parameters.codecov-upload-file >>
           flags: circleci,${RELEASE_NAME}
-  build-catalina-11_4_1:
-    macos:
-      xcode: "11.4.1"
-    environment:
-      PACKAGE_NAME: << pipeline.parameters.package-name >>
-    steps:
-      - checkout
-      - run: 
-          name: Build
-          command: swift build
-      - run:
-          name: Lint
-          command: swiftformat --lint . && swiftlint
-      - run:
-          name: Run Swift Package Tests
-          command: swift test -v --enable-code-coverage
-      - run:
-          name: Prepare Code Coverage
-          command: xcrun llvm-cov export -format="lcov" .build/debug/${PACKAGE_NAME}PackageTests -instr-profile .build/debug/codecov/default.profdata > info.lcov
-      - codecov/upload:
-          file: << pipeline.parameters.codecov-upload-file >>
-          flags: circleci,macOS
-      - run:
-          name: Run iOS Tests
-          command: xcodebuild build test -scheme ${PACKAGE_NAME}-Package -destination 'name=iPhone 11'
-      - codecov/upload:
-          file: << pipeline.parameters.codecov-upload-file >>
-          flags: circleci,iOS
 workflows:
   version: 2
   build:
     jobs:
-      #- build-catalina-11_4_1
       - build-xenial
