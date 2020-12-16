@@ -1,0 +1,4 @@
+[submodule "Template"]
+	path = Template
+	url = https://github.com/brightdigit/eggseed-template
+  branch = feature/templating

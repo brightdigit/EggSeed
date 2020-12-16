@@ -1,4 +1,5 @@
 import Foundation
+import mustache
 import PromiseKit
 
 #if canImport(FoundationNetworking)
@@ -11,6 +12,7 @@ public class EggSeedRunner: Runner {
   let gitterface: Gitterface = ProcessGitterface()
   let expander: Expander = ArchiveExpander()
   let packageFactory: PackageFactory = ProcessPackageFactory()
+  let licenseIssuer: LicenseIssuer = LicenseDownloadIssuer()
 
   public init() {}
 
@@ -18,14 +20,13 @@ public class EggSeedRunner: Runner {
     withConfiguration configuration: EggSeedConfiguration,
     _ completion: @escaping (EggSeedError?) -> Void
   ) -> Cancellable {
-    let url = URL(string: "https://github.com/brightdigit/eggseed-template/archive/master.zip")!
-    let filesFilter = [".github/workflows/macOS.yml",
-                       ".github/workflows/ubuntu.yml",
-                       ".travis.yml",
-                       "bitrise.yml",
-                       ".circleci/config.yml",
+    let url = configuration.templateURL
+    let filesFilter = [".eggseed/.github/workflows/macOS.yml",
+                       ".eggseed/.github/workflows/ubuntu.yml",
+                       ".eggseed/.travis.yml",
+                       ".eggseed/bitrise.yml",
+                       ".eggseed/.circleci/config.yml",
                        "README.md",
-                       "LICENSE",
                        "Example/project.yml"]
     let destinationFolderURL = URL(fileURLWithPath: configuration.path ?? FileManager.default.currentDirectoryPath)
 
@@ -35,12 +36,9 @@ public class EggSeedRunner: Runner {
       if let readUserName = configuration.userName {
         resolver.fulfill(readUserName)
       } else {
-        gitterface.getRemoteURL(for: "origin", at: destinationFolderURL) { result in
-          resolver.resolve(result.map {
-            $0.deletingLastPathComponent().lastPathComponent
-          }.mapError { _ in
-            EggSeedError.missingValue("userName")
-            })
+        gitterface.getSpecs(for: "origin", at: destinationFolderURL) { result in
+          resolver.resolve(result.map { $0.owner }.mapError { _ in EggSeedError.missingValue("userName")
+          })
         }
       }
     }
@@ -53,16 +51,33 @@ public class EggSeedRunner: Runner {
       }
     }
 
+    let parser = MustacheParser()
+    parser.openCharacter = "["
+    parser.closeCharacter = "]"
+
+    var savedUserName: String!
+
     let queue = DispatchQueue.global(qos: .userInitiated)
     let cancellable = when(fulfilled: userNamePromise, downloadPromise).then(on: queue) { (args) -> Promise<Void> in
       let (userName, url) = args
+      savedUserName = userName
+
       return Promise<Void> { resolver in
         self.expander.extract(fromURL: url, toURL: destinationFolderURL, forEach: { item, completed in
-          if filesFilter.contains(item.relativePath), var text = String(data: item.data, encoding: .utf8) {
-            text = text.replacingOccurrences(of: "_PACKAGE_NAME", with: packageName)
-            text = text.replacingOccurrences(of: "_USER_NAME", with: userName)
-            let url = destinationFolderURL.appendingPathComponent(item.relativePath)
+          if filesFilter.contains(item.relativePath) || item.relativePath.hasPrefix(".eggseed/"), let templateText = String(data: item.data, encoding: .utf8) {
+            let relativePath: String
+            if item.relativePath.hasPrefix(".eggseed/") {
+              relativePath = item.relativePath.components(separatedBy: "/").dropFirst().joined(separator: "/")
+            } else {
+              relativePath = item.relativePath
+            }
+            let url = destinationFolderURL.appendingPathComponent(relativePath)
             let result = Result<Bool, Error> {
+              if !FileManager.default.fileExists(atPath: url.deletingLastPathComponent().path) {
+                try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+              }
+              let template = parser.parse(string: templateText)
+              let text = template.render(object: ["packageName": packageName, "userName": userName])
               try text.write(to: url, atomically: true, encoding: .utf8)
               return true
             }
@@ -70,11 +85,15 @@ public class EggSeedRunner: Runner {
           } else {
             completed(.success(false))
           }
-      }, completion: resolver.resolve)
+        }, completion: resolver.resolve)
       }
     }.then(on: queue) { _ in
       Promise { resolver in
         self.packageFactory.create(atURL: destinationFolderURL, withType: configuration.packageType, resolver.resolve)
+      }
+    }.then(on: queue) { _ in
+      Promise { resolver in
+        self.licenseIssuer.issue(configuration.license, to: destinationFolderURL, withSession: self.session, usingFullName: savedUserName, resolver.resolve)
       }
     }.map(on: queue) { (_) -> EggSeedError? in
       nil

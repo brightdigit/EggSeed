@@ -4,7 +4,7 @@ import Foundation
   import FoundationNetworking
 #endif
 
-protocol Downloader {
+public protocol Downloader {
   @discardableResult
   func downloadURL(
     _ url: URL,
