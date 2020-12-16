@@ -20,7 +20,6 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.1"),
     .package(url: "https://github.com/weichsel/ZIPFoundation", .upToNextMajor(from: "0.9.0")),
     .package(url: "https://github.com/mxcl/PromiseKit.git", from: "7.0.0-alpha.3"),
-    .package(name: "SwiftSyntax", url: "https://github.com/apple/swift-syntax.git", .exact("0.50200.0")),
     .package(name: "mustache", url: "https://github.com/AlwaysRightInstitute/mustache", from: "0.5.9"),
     .package(url: "https://github.com/shibapm/Komondor", from: "1.0.6"), // dev
     .package(url: "https://github.com/eneko/SourceDocs", from: "1.2.1"), // dev
@@ -42,7 +41,7 @@ let package = Package(
       name: "EggSeedKit",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
-        "ZIPFoundation", "PromiseKit", "SwiftSyntax", "mustache"
+        "ZIPFoundation", "PromiseKit", "mustache"
       ]
     ),
     .testTarget(
