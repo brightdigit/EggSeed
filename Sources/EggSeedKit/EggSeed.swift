@@ -60,6 +60,9 @@ public struct EggSeed: ParsableCommand, EggSeedConfiguration {
   @Option(help: "Use Komondor")
   public var komondor: Bool = true
 
+  @Option(help: "Use Rocket")
+  public var rocket: Bool = true
+
   // sourcedocs or jazzy
   #warning("Add Documentation Tool Option")
   @Option(help: "Documentation Tool")

@@ -1,7 +1,7 @@
 import ArgumentParser
 
 // swiftlint:disable identifier_name
-public enum License: String, ExpressibleByArgument {
+public enum License: String, ExpressibleByArgument, CaseIterable {
   case agpl3_0 = "agpl-3.0"
   case apache2_0 = "apache-2.0"
   case bsd2clause = "bsd-2-clause"

@@ -3,7 +3,7 @@
 # `License`
 
 ```swift
-public enum License: String, ExpressibleByArgument
+public enum License: String, ExpressibleByArgument, CaseIterable
 ```
 
 ## Cases

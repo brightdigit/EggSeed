@@ -10,6 +10,26 @@ public enum ContinuousIntegrationSystem: Int, CaseIterable {
   case travisci = 2
   case github = 4
   case circleci = 8
+
+  static let descriptions: [ContinuousIntegrationSystem: String] = [
+    .bitrise: "Bitrise",
+    .travisci: "Travis-CI",
+    .github: "Github Actions",
+    .circleci: "Circle CI"
+  ]
+}
+
+extension ContinuousIntegrationSystem: ExpressibleByStringLiteral, CustomStringConvertible {
+  public typealias StringLiteralType = String
+
+  public init(stringLiteral value: String) {
+    let index = Self.descriptions.firstIndex(where: { $0.value == value })
+    self = Self.descriptions[index!].key
+  }
+
+  public var description: String {
+    return Self.descriptions[self]!
+  }
 }
 
 public struct ContinuousIntegration: OptionSet, ExpressibleByArgument {
@@ -32,4 +52,15 @@ public struct ContinuousIntegration: OptionSet, ExpressibleByArgument {
 protocol CISystem {
   func remove(fromURL url: URL, _ completion: @escaping (Error?) -> Void)
   func verify(atURL url: URL, for platforms: SupportedPlatform, _ completion: @escaping (Error?) -> Void)
+}
+
+public extension ContinuousIntegration {
+  var list: [ContinuousIntegrationSystem] {
+    set {
+      self = ContinuousIntegration(rawValue: newValue.map { $0.rawValue }.reduce(0, |))
+    }
+    get {
+      ContinuousIntegrationSystem.allCases.filter { self.rawValue & $0.rawValue == $0.rawValue }
+    }
+  }
 }

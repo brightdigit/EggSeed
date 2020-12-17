@@ -49,6 +49,12 @@ public var cocoapods: Bool = false
 public var komondor: Bool = true
 ```
 
+### `rocket`
+
+```swift
+public var rocket: Bool = true
+```
+
 ### `documentation`
 
 ```swift
