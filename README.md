@@ -50,7 +50,7 @@ swift run eggseed
 Add the following to your Package.swift file's dependencies:
 
 ```swift
-.package(url: "https://github.com/brightdigit/EggSeed.git", .branch("master")),
+.package(url: "https://github.com/brightdigit/EggSeed.git", from: "0.2.0"),
 ```
 
 And then import wherever needed: `import EggSeed`
